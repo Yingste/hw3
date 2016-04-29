@@ -20,6 +20,12 @@ import java.util.Random;
 public class Hand
 {
 
+	private int   mvalue;
+	private int   mrolls;
+	private int   mdice;
+	private int   rolls = 0;
+	private int[] dice;
+	private int[] fixed;
   /**
    * Constructs a new Hand in which each die initially has 
    * the (invalid) value zero. 
@@ -33,7 +39,21 @@ public class Hand
    */
   public Hand(int numDice, int maxValue, int maxRolls)
   {
-    // TODO
+    	mvalue = maxValue;
+    	mrolls = maxRolls;
+    	mdice = numDice;
+    	
+    	dice  = new int[mdice];
+    	fixed = new int[mdice];
+    	
+    	int i = 0;
+    	for (i = 0; i < mdice; i ++)
+    	{
+    		dice[i] = 0;
+    		fixed[i] = 0;
+    	}
+    	
+    	
   }   
   
   /**
@@ -57,7 +77,38 @@ public class Hand
    */
   public Hand(int numDice, int maxValue, int maxRolls, int[] initialValues)
   {
-    // TODO
+    mvalue = maxValue;
+	mrolls = maxRolls;
+	mdice = numDice;
+	
+	dice  = new int[mdice];
+	fixed = new int[mdice];
+	
+	if(initialValues.length < dice.length)
+	{
+		int i = 0;
+		for (i = 0; i < mdice; i ++)
+		{
+			if(i > initialValues.length)
+			{
+				dice[i] = 0;
+			}else
+			{
+				dice[i] = initialValues[i];
+			}
+			
+			fixed[i] = 0;
+		}
+	}else
+	{
+		int i = 0;
+		for (i = 0; i < mdice; i ++)
+		{
+			dice[i] = initialValues[i];
+			fixed[i] = 0;
+		}
+	}
+	
   }  
   
   /**
@@ -67,8 +118,8 @@ public class Hand
    */
   public int getNumDice()
   {
-    // TODO
-    return 0;
+    
+    return mdice;
   }
   
   /**
@@ -79,8 +130,16 @@ public class Hand
    */
   public int getMaxValue()
   {
-    // TODO
-    return 0;
+	  int max = 0;
+	  int i = 0;
+	  
+	  for(i = 0; i < dice.length - 1; i ++)
+	  {
+		  max = Math.max(dice[i], max);
+	  }
+	  
+	  
+	  return max;
   }
   
   /**
@@ -92,7 +151,19 @@ public class Hand
    */
   public void roll(Random rand)
   {
-    // TODO
+	  
+	  int i = 0;
+	  
+	  for(i = 0; i < dice.length - 1; i ++)
+	  {
+		  if(fixed[i] == 0)
+		  {
+			  dice[i] = rand.nextInt(mvalue);
+		  }
+		  
+	  }
+	  rolls ++;
+    
   }
 
   /**
@@ -105,7 +176,15 @@ public class Hand
    */
   public void keep(int value)
   {
-    // TODO
+	  int i = 0;
+	  
+	  for(i = 0; i < dice.length - 1; i++)
+	  {
+		  if (dice[i] == value)
+		  {
+			  fixed[i] = 1;
+		  }
+	  }
   }
 
   /**
@@ -119,7 +198,15 @@ public class Hand
    */
   public void free(int value)
   {
-    // TODO
+	  int i = 0;
+	  
+	  for(i = 0; i < dice.length - 1; i++)
+	  {
+		  if (dice[i] == value)
+		  {
+			  fixed[i] = 0;
+		  }
+	  }
   }
   
   /**
@@ -129,7 +216,16 @@ public class Hand
    */
   public void keepAll()
   {
-    // TODO
+	  if(rolls >= mrolls)
+	  {
+		  int i = 0;
+		    
+		  for(i = 0; i < dice.length - 1; i ++)
+		  {
+			  fixed[i] = 1;
+		  }
+	  }
+	  
   }
   
   /**
@@ -139,7 +235,15 @@ public class Hand
    */
   public void freeAll()
   {
-    // TODO
+	  if(rolls < mrolls)
+	  {
+		  int i = 0;
+		    
+		  for(i = 0; i < dice.length - 1; i ++)
+		  {
+			  fixed[i] = 0;
+		  }
+	  }
   }
   
   /**
@@ -150,8 +254,17 @@ public class Hand
    */
   public boolean isComplete()
   {
-    // TODO
-    return false;
+    Boolean check = false;
+    
+    int i = 0; 
+    for (i = 0; i < dice.length - 1; i++)
+    {
+    	if (fixed[i] == 0)
+    	{
+    		check = true;
+    	}
+    }
+    return check;
   }
 
   /**
@@ -162,6 +275,26 @@ public class Hand
    */
   public int[] getFixedDice()
   {
+	  int[] gfix;
+	  int num = 0;
+	  int i = 0;
+	  for (i = 0; i < dice.length - 1; i++)
+	  {
+		  if(fixed[i] == 1)
+		  {
+			  num++;
+		  }
+	  }
+	  int k = 0;
+	  gfix = new int[num];
+	  for(i = 0; i < dice.length - 1; i++)
+	  {
+		  if(fixed[i] == 1)
+		  {
+			  gfix[k] = dice[i];
+			  k++;
+		  }
+	  }
     // TODO
     return null;
   }
