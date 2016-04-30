@@ -1,5 +1,6 @@
   package hw3;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -295,8 +296,8 @@ public class Hand
 			  k++;
 		  }
 	  }
-    // TODO
-    return null;
+    
+    return gfix;
   }
   
   /**
@@ -308,8 +309,27 @@ public class Hand
    */
   public int[] getAvailableDice()
   {
-    // TODO
-    return null;
+	  int[] gfix;
+	  int num = 0;
+	  int i = 0;
+	  for (i = 0; i < dice.length - 1; i++)
+	  {
+		  if(fixed[i] == 0)
+		  {
+			  num++;
+		  }
+	  }
+	  int k = 0;
+	  gfix = new int[num];
+	  for(i = 0; i < dice.length - 1; i++)
+	  {
+		  if(fixed[i] == 0)
+		  {
+			  gfix[k] = dice[i];
+			  k++;
+		  }
+	  }
+    return gfix;
   }
  
   /**
@@ -319,8 +339,11 @@ public class Hand
    */
   public int[] getAll()
   {
-    // TODO
-    return null;
+	  int[] gfix = dice;
+	 
+	  Arrays.sort(gfix);
+	  
+    return gfix;
   }
   
   /**
