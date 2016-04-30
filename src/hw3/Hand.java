@@ -159,7 +159,7 @@ public class Hand
 	  {
 		  if(fixed[i] == 0)
 		  {
-			  dice[i] = rand.nextInt(mvalue);
+			  dice[i] = rand.nextInt(mvalue) + 1;
 		  }
 		  
 	  }
@@ -200,14 +200,17 @@ public class Hand
   public void free(int value)
   {
 	  int i = 0;
-	  
-	  for(i = 0; i < dice.length - 1; i++)
+	  if(rolls >= rolls)
 	  {
-		  if (dice[i] == value)
+		  for(i = 0; i < dice.length - 1; i++)
 		  {
-			  fixed[i] = 0;
+			  if (dice[i] == value)
+			  {
+				  fixed[i] = 0;
+			  }
 		  }
 	  }
+	  
   }
   
   /**
