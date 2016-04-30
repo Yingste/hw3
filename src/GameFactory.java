@@ -27,8 +27,8 @@ public class GameFactory
   public static YahtzeeGame createReallyTinyGame()
   {
     YahtzeeGame game = new YahtzeeGame(5, 6, 3);
-    //Category category = new CountOccurrences("Sixes", 6);
-    //game.addCategory(category);
+    Category category = new CountOccurrences("Sixes", 6);
+    game.addCategory(category);
     return game;
   }  
   

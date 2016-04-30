@@ -35,6 +35,7 @@ public class YahtzeeGame
     ndice = numDice;
     mdval = maxDieValue;
     nroll = numRolls;
+   // System.out.println("hi");
   }
   
   /**
@@ -44,7 +45,9 @@ public class YahtzeeGame
    */
   public void addCategory(Category category)
   {
+	  
 	  cats.add(category);
+	  
   }
   
   
@@ -55,7 +58,7 @@ public class YahtzeeGame
    */
   public ArrayList<Category> getCategories()
   {
-    
+	  
     return cats;
   }
   
@@ -68,6 +71,7 @@ public class YahtzeeGame
    */
   public Hand createNewHand()
   {
+	  //System.out.println("hi");
 	  Hand temp = new Hand(ndice, mdval, nroll);
 	  return temp;
   }
