@@ -28,9 +28,13 @@ public class YahtzeeGame
    * @param numRolls
    *   number of times the dice can be rolled in each round
    */
+	private int ndice, mdval, nroll;
+	private ArrayList<hw3.api.Category> cats;
   public YahtzeeGame(int numDice, int maxDieValue, int numRolls) 
   {
-    // TODO
+    ndice = numDice;
+    mdval = maxDieValue;
+    nroll = numRolls;
   }
   
   /**
@@ -40,7 +44,7 @@ public class YahtzeeGame
    */
   public void addCategory(Category category)
   {
-    // TODO
+	  cats.add(category);
   }
   
   
@@ -51,8 +55,8 @@ public class YahtzeeGame
    */
   public ArrayList<Category> getCategories()
   {
-    // TODO
-    return null;
+    
+    return cats;
   }
   
   /**
@@ -64,8 +68,8 @@ public class YahtzeeGame
    */
   public Hand createNewHand()
   {
-    // TODO
-    return null;
+	  Hand temp = new Hand(ndice, mdval, nroll);
+	  return temp;
   }
   
   /**
@@ -75,8 +79,15 @@ public class YahtzeeGame
    */
   public int getScore()
   {
-    // TODO
-    return 0;
+	  int i = 0;
+	  int score = 0;
+	  for(i = 0; i < cats.size() - 1; i++)
+	  {
+		  score =+ cats.get(i).getScore();
+	  }
+	  
+	  
+	  return score;
   }
 
 }

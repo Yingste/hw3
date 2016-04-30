@@ -24,6 +24,8 @@ public class CountOccurrences implements hw3.api.Category
   public CountOccurrences(String displayName, int whichValue)
   {
 	  filled = false;
+	  dname = displayName;
+	  dval = whichValue;
   }
 
 @Override
@@ -80,7 +82,7 @@ public boolean isSatisfiedBy(Hand dice) {
 		}
 	}
 	
-	return false;
+	return test;
 }
 
 @Override
